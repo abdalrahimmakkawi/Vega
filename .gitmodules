@@ -1,0 +1,6 @@
+[submodule "vendor/modules/LatticeLibrary"]
+	path = vendor/modules/LatticeLibrary
+	url = https://github.com/leap71/LEAP71_LatticeLibrary.git
+[submodule "vendor/modules/QuasiCrystals"]
+	path = vendor/modules/QuasiCrystals
+	url = https://github.com/leap71/LEAP71_QuasiCrystals.git

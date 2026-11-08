@@ -1,0 +1,7 @@
+# Install into .tools/python alongside requirements-physics.txt.
+rocketcea==1.2.3
+cea==3.3.4
+proptools-rocket==0.0.2
+trimesh==5.1.1
+numpy==2.4.4
+scipy==1.15.3

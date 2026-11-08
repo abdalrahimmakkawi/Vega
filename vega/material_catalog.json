@@ -1,0 +1,451 @@
+{
+  "version": 1,
+  "scope": "Material candidates, not qualified print recipes. Process family is a discovery category; machine/grade compatibility requires verification. Missing values must be supplied; no bulk strength is treated as a printed-part allowable.",
+  "references": [
+    "https://www.eos.info/metal-solutions/metal-materials",
+    "https://formlabs.com/products/materials/"
+  ],
+  "materials": [
+    {
+      "id": "pla",
+      "name": "PLA",
+      "family": "Thermoplastic",
+      "process_family": "fff",
+      "properties": {},
+      "data_status": "grade_and_process_data_required"
+    },
+    {
+      "id": "petg",
+      "name": "PETG",
+      "family": "Thermoplastic",
+      "process_family": "fff",
+      "properties": {},
+      "data_status": "grade_and_process_data_required"
+    },
+    {
+      "id": "abs",
+      "name": "ABS",
+      "family": "Thermoplastic",
+      "process_family": "fff",
+      "properties": {},
+      "data_status": "grade_and_process_data_required"
+    },
+    {
+      "id": "asa",
+      "name": "ASA",
+      "family": "Thermoplastic",
+      "process_family": "fff",
+      "properties": {},
+      "data_status": "grade_and_process_data_required"
+    },
+    {
+      "id": "pa6",
+      "name": "PA6",
+      "family": "Thermoplastic",
+      "process_family": "fff",
+      "properties": {},
+      "data_status": "grade_and_process_data_required"
+    },
+    {
+      "id": "pa12",
+      "name": "PA12",
+      "family": "Thermoplastic",
+      "process_family": "fff",
+      "properties": {},
+      "data_status": "grade_and_process_data_required"
+    },
+    {
+      "id": "pc",
+      "name": "PC",
+      "family": "Thermoplastic",
+      "process_family": "fff",
+      "properties": {},
+      "data_status": "grade_and_process_data_required"
+    },
+    {
+      "id": "peek",
+      "name": "PEEK",
+      "family": "Thermoplastic",
+      "process_family": "fff",
+      "properties": {},
+      "data_status": "grade_and_process_data_required"
+    },
+    {
+      "id": "pekk",
+      "name": "PEKK",
+      "family": "Thermoplastic",
+      "process_family": "fff",
+      "properties": {},
+      "data_status": "grade_and_process_data_required"
+    },
+    {
+      "id": "ppsu",
+      "name": "PPSU",
+      "family": "Thermoplastic",
+      "process_family": "fff",
+      "properties": {},
+      "data_status": "grade_and_process_data_required"
+    },
+    {
+      "id": "pei",
+      "name": "PEI",
+      "family": "Thermoplastic",
+      "process_family": "fff",
+      "properties": {},
+      "data_status": "grade_and_process_data_required"
+    },
+    {
+      "id": "pp",
+      "name": "PP",
+      "family": "Thermoplastic",
+      "process_family": "fff",
+      "properties": {},
+      "data_status": "grade_and_process_data_required"
+    },
+    {
+      "id": "tpu",
+      "name": "TPU",
+      "family": "Thermoplastic",
+      "process_family": "fff",
+      "properties": {},
+      "data_status": "grade_and_process_data_required"
+    },
+    {
+      "id": "pa6_cf",
+      "name": "PA6-CF",
+      "family": "Thermoplastic",
+      "process_family": "fff",
+      "properties": {},
+      "data_status": "grade_and_process_data_required"
+    },
+    {
+      "id": "pa12_cf",
+      "name": "PA12-CF",
+      "family": "Thermoplastic",
+      "process_family": "fff",
+      "properties": {},
+      "data_status": "grade_and_process_data_required"
+    },
+    {
+      "id": "petg_cf",
+      "name": "PETG-CF",
+      "family": "Thermoplastic",
+      "process_family": "fff",
+      "properties": {},
+      "data_status": "grade_and_process_data_required"
+    },
+    {
+      "id": "pc_cf",
+      "name": "PC-CF",
+      "family": "Thermoplastic",
+      "process_family": "fff",
+      "properties": {},
+      "data_status": "grade_and_process_data_required"
+    },
+    {
+      "id": "peek_cf",
+      "name": "PEEK-CF",
+      "family": "Thermoplastic",
+      "process_family": "fff",
+      "properties": {},
+      "data_status": "grade_and_process_data_required"
+    },
+    {
+      "id": "pa11",
+      "name": "PA11",
+      "family": "Polymer powder",
+      "process_family": "sls",
+      "properties": {},
+      "data_status": "grade_and_process_data_required"
+    },
+    {
+      "id": "pa12_powder",
+      "name": "PA12 powder",
+      "family": "Polymer powder",
+      "process_family": "sls",
+      "properties": {},
+      "data_status": "grade_and_process_data_required"
+    },
+    {
+      "id": "pa12_glass_filled",
+      "name": "PA12 glass-filled",
+      "family": "Polymer powder",
+      "process_family": "sls",
+      "properties": {},
+      "data_status": "grade_and_process_data_required"
+    },
+    {
+      "id": "tpu_powder",
+      "name": "TPU powder",
+      "family": "Polymer powder",
+      "process_family": "sls",
+      "properties": {},
+      "data_status": "grade_and_process_data_required"
+    },
+    {
+      "id": "standard_resin",
+      "name": "Standard resin",
+      "family": "Photopolymer",
+      "process_family": "sla",
+      "properties": {},
+      "data_status": "grade_and_process_data_required"
+    },
+    {
+      "id": "clear_resin",
+      "name": "Clear resin",
+      "family": "Photopolymer",
+      "process_family": "sla",
+      "properties": {},
+      "data_status": "grade_and_process_data_required"
+    },
+    {
+      "id": "tough_resin",
+      "name": "Tough resin",
+      "family": "Photopolymer",
+      "process_family": "sla",
+      "properties": {},
+      "data_status": "grade_and_process_data_required"
+    },
+    {
+      "id": "rigid_glass_filled_resin",
+      "name": "Rigid glass-filled resin",
+      "family": "Photopolymer",
+      "process_family": "sla",
+      "properties": {},
+      "data_status": "grade_and_process_data_required"
+    },
+    {
+      "id": "high_temperature_resin",
+      "name": "High-temperature resin",
+      "family": "Photopolymer",
+      "process_family": "sla",
+      "properties": {},
+      "data_status": "grade_and_process_data_required"
+    },
+    {
+      "id": "flexible_resin",
+      "name": "Flexible resin",
+      "family": "Photopolymer",
+      "process_family": "sla",
+      "properties": {},
+      "data_status": "grade_and_process_data_required"
+    },
+    {
+      "id": "castable_resin",
+      "name": "Castable resin",
+      "family": "Photopolymer",
+      "process_family": "sla",
+      "properties": {},
+      "data_status": "grade_and_process_data_required"
+    },
+    {
+      "id": "316l",
+      "name": "316L",
+      "family": "Metal",
+      "process_family": "lpbf",
+      "properties": {
+        "core_material_density_kg_m3": 8000,
+        "wall_conductivity_w_m_k": 15
+      },
+      "data_status": "room_temperature_wrought_reference_only",
+      "property_source": "https://www.thyssenkrupp-materials.co.uk/stainless-steel-316l-14404.html",
+      "property_condition": "20 C, wrought product; not printed-part allowables"
+    },
+    {
+      "id": "17_4ph",
+      "name": "17-4PH",
+      "family": "Metal",
+      "process_family": "lpbf",
+      "properties": {},
+      "data_status": "grade_and_process_data_required"
+    },
+    {
+      "id": "15_5ph",
+      "name": "15-5PH",
+      "family": "Metal",
+      "process_family": "lpbf",
+      "properties": {},
+      "data_status": "grade_and_process_data_required"
+    },
+    {
+      "id": "maraging_steel_300",
+      "name": "Maraging steel 300",
+      "family": "Metal",
+      "process_family": "lpbf",
+      "properties": {},
+      "data_status": "grade_and_process_data_required"
+    },
+    {
+      "id": "h13",
+      "name": "H13",
+      "family": "Metal",
+      "process_family": "lpbf",
+      "properties": {},
+      "data_status": "grade_and_process_data_required"
+    },
+    {
+      "id": "alsi10mg",
+      "name": "AlSi10Mg",
+      "family": "Metal",
+      "process_family": "lpbf",
+      "properties": {},
+      "data_status": "grade_and_process_data_required"
+    },
+    {
+      "id": "alsi7mg",
+      "name": "AlSi7Mg",
+      "family": "Metal",
+      "process_family": "lpbf",
+      "properties": {},
+      "data_status": "grade_and_process_data_required"
+    },
+    {
+      "id": "al6061",
+      "name": "Al6061",
+      "family": "Metal",
+      "process_family": "lpbf",
+      "properties": {},
+      "data_status": "grade_and_process_data_required"
+    },
+    {
+      "id": "ti6al4v",
+      "name": "Ti6Al4V",
+      "family": "Metal",
+      "process_family": "lpbf",
+      "properties": {},
+      "data_status": "grade_and_process_data_required"
+    },
+    {
+      "id": "commercially_pure_titanium",
+      "name": "Commercially pure titanium",
+      "family": "Metal",
+      "process_family": "lpbf",
+      "properties": {},
+      "data_status": "grade_and_process_data_required"
+    },
+    {
+      "id": "inconel_625",
+      "name": "Inconel 625",
+      "family": "Metal",
+      "process_family": "lpbf",
+      "properties": {},
+      "data_status": "grade_and_process_data_required"
+    },
+    {
+      "id": "inconel_718",
+      "name": "Inconel 718",
+      "family": "Metal",
+      "process_family": "lpbf",
+      "properties": {},
+      "data_status": "grade_and_process_data_required"
+    },
+    {
+      "id": "hastelloy_x",
+      "name": "Hastelloy X",
+      "family": "Metal",
+      "process_family": "lpbf",
+      "properties": {},
+      "data_status": "grade_and_process_data_required"
+    },
+    {
+      "id": "haynes_282",
+      "name": "Haynes 282",
+      "family": "Metal",
+      "process_family": "lpbf",
+      "properties": {},
+      "data_status": "grade_and_process_data_required"
+    },
+    {
+      "id": "cocrmo",
+      "name": "CoCrMo",
+      "family": "Metal",
+      "process_family": "lpbf",
+      "properties": {},
+      "data_status": "grade_and_process_data_required"
+    },
+    {
+      "id": "pure_copper",
+      "name": "Pure copper",
+      "family": "Metal",
+      "process_family": "lpbf",
+      "properties": {},
+      "data_status": "grade_and_process_data_required"
+    },
+    {
+      "id": "cucrzr",
+      "name": "CuCrZr",
+      "family": "Metal",
+      "process_family": "lpbf",
+      "properties": {},
+      "data_status": "grade_and_process_data_required"
+    },
+    {
+      "id": "grcop_42",
+      "name": "GRCop-42",
+      "family": "Metal",
+      "process_family": "lpbf",
+      "properties": {},
+      "data_status": "grade_and_process_data_required"
+    },
+    {
+      "id": "grcop_84",
+      "name": "GRCop-84",
+      "family": "Metal",
+      "process_family": "lpbf",
+      "properties": {},
+      "data_status": "grade_and_process_data_required"
+    },
+    {
+      "id": "tungsten",
+      "name": "Tungsten",
+      "family": "Metal",
+      "process_family": "lpbf",
+      "properties": {},
+      "data_status": "grade_and_process_data_required"
+    },
+    {
+      "id": "tantalum",
+      "name": "Tantalum",
+      "family": "Metal",
+      "process_family": "lpbf",
+      "properties": {},
+      "data_status": "grade_and_process_data_required"
+    },
+    {
+      "id": "alumina",
+      "name": "Alumina",
+      "family": "Ceramic",
+      "process_family": "ceramic",
+      "properties": {},
+      "data_status": "grade_and_process_data_required"
+    },
+    {
+      "id": "zirconia",
+      "name": "Zirconia",
+      "family": "Ceramic",
+      "process_family": "ceramic",
+      "properties": {},
+      "data_status": "grade_and_process_data_required"
+    },
+    {
+      "id": "silicon_carbide",
+      "name": "Silicon carbide",
+      "family": "Ceramic",
+      "process_family": "ceramic",
+      "properties": {},
+      "data_status": "grade_and_process_data_required"
+    }
+  ],
+  "processes": {
+    "unspecified": "Not selected",
+    "fff": "Filament extrusion",
+    "sla": "Resin vat printing",
+    "sls": "Polymer powder bed",
+    "lpbf": "Laser metal powder bed",
+    "ebm": "Electron-beam metal powder bed",
+    "binder_jet": "Binder jet + sinter",
+    "ded": "Directed energy deposition",
+    "ceramic": "Ceramic printing + sinter",
+    "custom": "Custom process"
+  }
+}

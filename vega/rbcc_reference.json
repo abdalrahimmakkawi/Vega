@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "name": "Vega RBCC reference and cycle-code comparison pack",
+  "provenance": "Primary NASA Technical Reports Server records and abstracts; the source-specific quantitative test data are not bundled.",
+  "architecture": {
+    "sequence": ["inlet", "rocket_primary", "mixer_ejector", "isolator", "airbreathing_combustor", "common_nozzle"],
+    "modes": ["air_augmented_rocket", "ramjet", "dual_mode_ram_scramjet", "scramjet", "rocket_only"],
+    "required_geometry": ["air_inlet", "mixer", "isolator", "air_combustor", "common_nozzle"],
+    "source": "https://ntrs.nasa.gov/citations/20020016608",
+    "source_note": "The NASA A5 concept record describes integrated rocket thrusters and an inlet, isolator, airbreathing combustor and nozzle flowpath, four operating modes, and demonstrated AAR-to-RAM and RAM-to-SCRAM transitions in tests. This is an architecture reference, not a performance map for Vega."
+  },
+  "cycle_code_cases": [
+    {"id": "M0-static", "mach": 0.0, "mode": "rocket_ejector", "role": "static air-augmented-rocket comparison"},
+    {"id": "M1-AAR", "mach": 1.0, "mode": "air_augmented_rocket", "role": "low-speed ejector comparison"},
+    {"id": "M2.5-AAR", "mach": 2.5, "mode": "air_augmented_rocket", "role": "upper ejector comparison"},
+    {"id": "M4-dual-mode", "mach": 4.0, "mode": "ramjet_or_dual_mode", "role": "subsonic-combustion-ramjet / dual-mode comparison"},
+    {"id": "M8-scramjet", "mach": 8.0, "mode": "scramjet", "role": "high-speed scramjet comparison"}
+  ],
+  "cycle_case_source": "https://ntrs.nasa.gov/citations/20020073110",
+  "mixing_model": {
+    "streams": ["rocket_primary", "captured_secondary_air", "mixed_stream"],
+    "marching_stations": ["mixer", "combustor", "nozzle"],
+    "source": "https://ntrs.nasa.gov/search.jsp?R=20010036882",
+    "source_note": "NASA's THRSTER description uses a quasi-one-dimensional three-stream marching model and stipulated mixing rates. Vega does not infer mixing rates from this abstract."
+  },
+  "validation_requirements": ["matched inlet total conditions", "primary rocket mass flow and chamber state", "secondary air mass flow", "wall static pressure taps along mixer and combustor", "fuel flow and injection state", "net thrust", "test uncertainty and facility corrections"],
+  "validation_source": "https://ntrs.nasa.gov/citations/19990064401",
+  "limits": ["The Mach cases are code-comparison conditions, not one vehicle trajectory.", "Evaluated free-stream values use Vega's selected altitude for side-by-side screening; source-specific test altitudes are not implied.", "No measured performance coefficients or mixing rates are supplied by this pack.", "A case match does not calibrate Vega or establish operability."]
+}

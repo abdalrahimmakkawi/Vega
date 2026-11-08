@@ -1,0 +1,38 @@
+{
+  "PicoGK": {
+    "repository": "https://github.com/leap71/PicoGK",
+    "commit": "0e6cf6b6f4993ec16dbcd72d8f27f26b999980f3",
+    "archive_sha256": "f8ddbc0f5740abbaf5200b630fb0ea52bfbc1c0da40b41f86f11c665fd721e15",
+    "supplied_archive_sha256": "58bebc703cc47e2c84b0500cd36038e249d461cf686dde9a5248023babbc1e37",
+    "supplied_csharp_files_verified": 60,
+    "build_path": "vendor/PicoGK",
+    "integration": "verified_vendor_source"
+  },
+  "ShapeKernel": {
+    "repository": "https://github.com/leap71/LEAP71_ShapeKernel",
+    "commit": "554bce4791d2676ed00bd6704f6eb010111a7fd3",
+    "archive_sha256": "9a091e41ff6d210b75d7c5c58fb690c93e35059da612da4295fbacfec62bf9fd",
+    "supplied_archive_sha256": "ab1e993f5dc8481ebf8d31211fcd5c012b06cf5a6cb0c9fea80aa20bcb0e516d",
+    "supplied_csharp_files_verified": 66,
+    "build_path": "vendor/ShapeKernel",
+    "integration": "verified_vendor_source"
+  },
+  "LatticeLibrary": {
+    "repository": "https://github.com/leap71/LEAP71_LatticeLibrary",
+    "commit": "81c3c7b2064c19e573c38d76ac09bf1cd2f562d5",
+    "archive_sha256": "d8f7ae70487ba1424686e73963654fea03c37fc55382cc7639a3d004db24a4d1",
+    "supplied_archive_sha256": "2658eb94b7ae3cd64349806bdb6320e8d8f3e4e457ad646c935498b8274d91d1",
+    "supplied_csharp_files_verified": 29,
+    "build_path": "vendor/modules/LatticeLibrary",
+    "integration": "git_submodule"
+  },
+  "QuasiCrystals": {
+    "repository": "https://github.com/leap71/LEAP71_QuasiCrystals",
+    "commit": "685e62a8bf4aa1b4da650a23b06532f41f91245b",
+    "archive_sha256": "0fa99433b247b744223870719abf98eefb471ff222fb2e14b23f56368ad5b103",
+    "supplied_archive_sha256": "163d3b43fda95cdf791fca7fd4c0acd7f104dbce997c973bc99518253af6e165",
+    "supplied_csharp_files_verified": 13,
+    "build_path": "vendor/modules/QuasiCrystals",
+    "integration": "git_submodule"
+  }
+}

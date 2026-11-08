@@ -1,0 +1,1 @@
+"""Vega: rocket conceptual engineering."""

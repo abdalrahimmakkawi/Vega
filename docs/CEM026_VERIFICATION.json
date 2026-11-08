@@ -1,0 +1,264 @@
+{
+  "run_id": "6f695b5862d14c9487372a09ae842be9",
+  "vehicle_mass_model": {
+    "status": "geometry_derived_estimate",
+    "mode": "component_estimate",
+    "components": [
+      {
+        "id": "pressure_shell_uncut",
+        "material_volume_mm3": 274535.2496713522,
+        "assumed_density_kg_m3": 8900,
+        "mass_kg": 2.443363722075035,
+        "method": "Exact frustum integration of the saved piecewise-linear inner and outer profiles; passages not subtracted"
+      },
+      {
+        "id": "fuel_tank",
+        "material_volume_mm3": 329553.0693615693,
+        "assumed_density_kg_m3": 2700,
+        "mass_kg": 0.8897932872762372,
+        "method": "Capped cylindrical shell, matching recipe dimensions; ports not subtracted"
+      },
+      {
+        "id": "oxidizer_tank",
+        "material_volume_mm3": 538783.1400906495,
+        "assumed_density_kg_m3": 2700,
+        "mass_kg": 1.4547144782447536,
+        "method": "Capped cylindrical shell, matching recipe dimensions; ports not subtracted"
+      },
+      {
+        "id": "fuel_feed",
+        "material_volume_mm3": 36849.79767984969,
+        "assumed_density_kg_m3": 8900,
+        "mass_kg": 0.32796319935066226,
+        "method": "Annular area times routed centerline length; bend/junction overlap not removed"
+      },
+      {
+        "id": "oxidizer_feed",
+        "material_volume_mm3": 16941.05504665092,
+        "assumed_density_kg_m3": 8900,
+        "mass_kg": 0.1507753899151932,
+        "method": "Annular area times routed centerline length; bend/junction overlap not removed"
+      },
+      {
+        "id": "fuel_return",
+        "material_volume_mm3": 5831.358724203724,
+        "assumed_density_kg_m3": 8900,
+        "mass_kg": 0.05189909264541315,
+        "method": "Annular area times routed centerline length; bend/junction overlap not removed"
+      },
+      {
+        "id": "injector_uncut",
+        "material_volume_mm3": 23875.298543824658,
+        "assumed_density_kg_m3": 8900,
+        "mass_kg": 0.21249015704003946,
+        "method": "Uncut injector cylinder; outlet holes not subtracted"
+      },
+      {
+        "id": "air_inlet",
+        "material_volume_mm3": 8305886.467526288,
+        "assumed_density_kg_m3": 2700,
+        "mass_kg": 22.42589346232098,
+        "method": "Signed volume of saved closed component triangles; overlapping members/joints counted separately"
+      },
+      {
+        "id": "mixer",
+        "material_volume_mm3": 9738145.499375477,
+        "assumed_density_kg_m3": 2700,
+        "mass_kg": 26.29299284831379,
+        "method": "Signed volume of saved closed component triangles; overlapping members/joints counted separately"
+      },
+      {
+        "id": "isolator",
+        "material_volume_mm3": 6305603.2247185,
+        "assumed_density_kg_m3": 2700,
+        "mass_kg": 17.025128706739952,
+        "method": "Signed volume of saved closed component triangles; overlapping members/joints counted separately"
+      },
+      {
+        "id": "air_combustor",
+        "material_volume_mm3": 14763079.72446578,
+        "assumed_density_kg_m3": 2700,
+        "mass_kg": 39.86031525605761,
+        "method": "Signed volume of saved closed component triangles; overlapping members/joints counted separately"
+      },
+      {
+        "id": "common_nozzle",
+        "material_volume_mm3": 21253482.73513827,
+        "assumed_density_kg_m3": 2700,
+        "mass_kg": 57.38440338487334,
+        "method": "Signed volume of saved closed component triangles; overlapping members/joints counted separately"
+      },
+      {
+        "id": "frame",
+        "material_volume_mm3": 2769921.6989499037,
+        "assumed_density_kg_m3": 2700,
+        "mass_kg": 7.478788587164741,
+        "method": "Signed volume of saved closed component triangles; overlapping members/joints counted separately"
+      },
+      {
+        "id": "thermal_reinforcement",
+        "material_volume_mm3": 495978.12274650263,
+        "assumed_density_kg_m3": 2700,
+        "mass_kg": 1.3391409314155571,
+        "method": "Signed volume of saved closed component triangles; overlapping members/joints counted separately"
+      },
+      {
+        "id": "mixer_strakes",
+        "material_volume_mm3": 114397.3043004309,
+        "assumed_density_kg_m3": 2700,
+        "mass_kg": 0.30887272161116347,
+        "method": "Signed volume of saved closed component triangles; overlapping members/joints counted separately"
+      },
+      {
+        "id": "core_mounts",
+        "material_volume_mm3": 13663.225776895708,
+        "assumed_density_kg_m3": 2700,
+        "mass_kg": 0.036890709597618414,
+        "method": "Signed volume of saved closed component triangles; overlapping members/joints counted separately"
+      },
+      {
+        "id": "solar_arrays",
+        "material_volume_mm3": null,
+        "assumed_density_kg_m3": null,
+        "mass_kg": 36.43624646352485,
+        "method": "Orbital power/thermal sizing with declared assumed areal mass or battery specific energy"
+      },
+      {
+        "id": "eclipse_battery",
+        "material_volume_mm3": null,
+        "assumed_density_kg_m3": null,
+        "mass_kg": 7.462401241811889,
+        "method": "Orbital power/thermal sizing with declared assumed areal mass or battery specific energy"
+      },
+      {
+        "id": "orbital_radiator",
+        "material_volume_mm3": null,
+        "assumed_density_kg_m3": null,
+        "mass_kg": 24.326360579938623,
+        "method": "Orbital power/thermal sizing with declared assumed areal mass or battery specific energy"
+      }
+    ],
+    "modeled_material_mass_kg": 245.90843421991744,
+    "unmodeled_equipment_allowance_kg": 100,
+    "mass_margin_fraction": 0.2,
+    "estimated_dry_mass_kg": 415.09012106390094,
+    "selected_dry_mass_kg": 415.09012106390094,
+    "specified_dry_mass_kg": 25,
+    "assembly_envelope_diameter_m": 1.2389256862803568,
+    "selected_reference_diameter_m": 1.2389256862803568,
+    "specified_budget_margin_kg": -390.09012106390094,
+    "checks": {
+      "selected_dry_mass_covers_estimate": true,
+      "vehicle_reference_diameter_contains_assembly_envelope": true
+    },
+    "inverse_sizing": {
+      "status": "no_finite_single_stage_solution",
+      "propellant_mass_kg": null,
+      "structural_feedback_factor": 26.575759346206425,
+      "required_delta_v_m_s": 6608.551563635126,
+      "tank_mass_slope_kg_per_kg": 3.573773266753039,
+      "fixed_mass_including_payload_kg": 1412.7754709949597,
+      "scope": "Conditional inverse rocket equation with fixed tank radii, wall thickness, materials and all non-tank masses. It does not resize the enclosing assembly, predict flight losses, or qualify a single-stage vehicle.",
+      "source": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/ideal-rocket-equation/"
+    },
+    "scope": "Gross component mass estimate with explicit equipment allowance and margin. Orbital array, battery and radiator masses use declared sizing assumptions. Uncut core envelopes overcount some material; cooling ports, core ribs/jacket, pressurant bottle, valves, vehicle skin, payload bay, wings, power distribution hardware, avionics and TPS are not independently modeled. Overlaps are not unioned. No upper/lower mass bound or manufactured material assignment is claimed."
+  },
+  "orbital_resources": {
+    "status": "conditional_orbital_resource_sizing",
+    "orbit": {
+      "period_s": 5301.004602322611,
+      "eclipse_s": 2233.1235716122073,
+      "sunlight_s": 3067.881030710404,
+      "eclipse_fraction": 0.4212642204901641
+    },
+    "power": {
+      "design_load_w": 1200.0,
+      "assumed_electrical_load_w": 1000,
+      "array_sunlight_power_w": 2221.6199683712084,
+      "array_area_m2": 7.287249292704971,
+      "battery_nominal_energy_wh": 1119.3601862717833,
+      "eclipse_load_energy_wh": 744.3745238707359,
+      "battery_loss_wh_per_orbit": 126.23895434065116,
+      "orbital_energy_residual_wh": 0.0
+    },
+    "thermal": {
+      "electrical_heat_rejection_w": 1285.7309641699283,
+      "radiator_area_m2": 4.05439342998977,
+      "net_radiative_flux_w_m2": 317.1204241452148,
+      "radiator_temperature_k": 320,
+      "effective_sink_temperature_k": 250,
+      "heat_balance_residual_w": 0.0
+    },
+    "component_masses_kg": {
+      "solar_arrays": 36.43624646352485,
+      "eclipse_battery": 7.462401241811889,
+      "orbital_radiator": 24.326360579938623
+    },
+    "checks": {
+      "orbital_energy_balance": true,
+      "radiator_heat_balance": true,
+      "positive_sunlight_duration": true
+    },
+    "assumptions": {
+      "solar_flux_w_m2": 1361.0,
+      "array_areal_mass_kg_m2": 5.0,
+      "radiator_areal_mass_kg_m2": 6.0,
+      "battery_charge_efficiency": 0.9,
+      "battery_discharge_efficiency": 0.95,
+      "solar_array_efficiency": 0.28,
+      "solar_eol_factor": 0.8,
+      "battery_depth_of_discharge": 0.7,
+      "battery_specific_energy_wh_kg": 150,
+      "radiator_emissivity": 0.85,
+      "power_margin_fraction": 0.2
+    },
+    "scope": "Circular Earth orbit, zero-beta central eclipse, normal solar incidence and constant load. No orbit lifetime, attitude solution, transient temperatures, surface view factors, solar/albedo heating, array pointing/deployment, peak loads, battery cycling qualification, power distribution hardware, atmospheric heating or reentry model. Radiator uses one isothermal emitting face and a user-assumed effective sink. Areal masses and battery performance are assumptions, not selected hardware.",
+    "sources": [
+      "https://www.nasa.gov/smallsat-institute/sst-soa/power-subsystems/",
+      "https://www.nasa.gov/wp-content/uploads/2021/10/7.soa_thermal_2021_0.pdf"
+    ]
+  },
+  "mission_budget": {
+    "vacuum_effective_exhaust_velocity_m_s": 3098.900132951848,
+    "available_ideal_delta_v_m_s": 1.41301534913428,
+    "remaining_speed_gap_m_s": 6608.551563635126,
+    "velocity_margin_m_s": -6607.138548285991,
+    "assumed_delta_v_allowance_m_s": 0,
+    "ideal_propellant_for_speed_gap_kg": 10523.077907725346,
+    "scope": "Conditional speed comparison with no ascent losses, altitude transfer or Earth rotation; a positive margin is not mission feasibility."
+  },
+  "system_contract_checks": {
+    "registered_route_ids_match_native_recipe": true,
+    "all_registered_ports_coincident": true,
+    "all_propellant_edges_from_registered_routes": true,
+    "rocket_mass_flow_matches_shared_state": true,
+    "captured_air_matches_shared_state": true,
+    "mission_propellant_matches_rocket_flow": true,
+    "shared_stage_interfaces_coincident": true,
+    "all_assembly_bodies_exported": true,
+    "all_native_core_bodies_exported": true,
+    "assembly_recipe_matches_export": true,
+    "native_core_scene_matches_export": true,
+    "exported_component_triangle_ranges_partition_mesh": true,
+    "assembly_body_ranges_match_scene_manifest": true,
+    "native_core_triangle_count_matches_export": true,
+    "native_core_ranges_follow_assembly_scene": true,
+    "mission_dry_mass_matches_selected_mass_model": true,
+    "flight_launch_mass_matches_mission_mass": true,
+    "mission_reference_area_matches_selected_envelope": true,
+    "component_mass_estimate_closes": true,
+    "orbital_resource_masses_in_vehicle_budget": true
+  },
+  "mesh_audit": {
+    "library": "Trimesh",
+    "watertight": true,
+    "winding_consistent": true,
+    "connected_components": 1,
+    "outer_shells": 1,
+    "internal_void_shells": 0,
+    "shell_signed_volumes_mm3": [
+      1277858.2871876135
+    ],
+    "signed_volume_mm3": 1277858.2871876135
+  }
+}

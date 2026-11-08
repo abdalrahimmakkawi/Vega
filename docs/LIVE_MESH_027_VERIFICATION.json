@@ -1,0 +1,341 @@
+{
+  "before_run": "6f695b5862d14c9487372a09ae842be9",
+  "after_run": "7c13cc1b1eb44a25918583a059c0d3dd",
+  "before": {
+    "air_inlet": {
+      "metric": "2*inradius/circumradius",
+      "minimum": 0.21699060397350542,
+      "p05": 0.3432305345303978,
+      "median": 0.6179429203567666,
+      "mean": 0.5843611362466615,
+      "maximum": 0.9997102045790909,
+      "below_0_2": 0,
+      "triangles": 6528
+    },
+    "mixer": {
+      "metric": "2*inradius/circumradius",
+      "minimum": 0.14343259569360786,
+      "p05": 0.3594116750371737,
+      "median": 0.6207743817091553,
+      "mean": 0.5814535963590163,
+      "maximum": 0.9994331733920472,
+      "below_0_2": 12,
+      "triangles": 12800
+    },
+    "isolator": {
+      "metric": "2*inradius/circumradius",
+      "minimum": 0.14343259569360786,
+      "p05": 0.5204470220557481,
+      "median": 0.7841416815089384,
+      "mean": 0.7294836252060761,
+      "maximum": 0.9983475141481866,
+      "below_0_2": 12,
+      "triangles": 12800
+    },
+    "air_combustor": {
+      "metric": "2*inradius/circumradius",
+      "minimum": 0.07438449248809774,
+      "p05": 0.3030550618333694,
+      "median": 0.561773385497098,
+      "mean": 0.5345844323123035,
+      "maximum": 0.995681355254036,
+      "below_0_2": 18,
+      "triangles": 12800
+    },
+    "common_nozzle": {
+      "metric": "2*inradius/circumradius",
+      "minimum": 0.07438449248809777,
+      "p05": 0.2726970109154706,
+      "median": 0.5194618027059457,
+      "mean": 0.5015385997153872,
+      "maximum": 0.9976306404556092,
+      "below_0_2": 18,
+      "triangles": 12800
+    }
+  },
+  "after": {
+    "air_inlet": {
+      "metric": "2*inradius/circumradius",
+      "minimum": 0.2671269446292112,
+      "p05": 0.5756681150981887,
+      "median": 0.804666771117826,
+      "mean": 0.7613146675401987,
+      "maximum": 0.9958830700211512,
+      "below_0_2": 0,
+      "triangles": 168960
+    },
+    "mixer": {
+      "metric": "2*inradius/circumradius",
+      "minimum": 0.12104005415099793,
+      "p05": 0.6118406962338623,
+      "median": 0.7929458179757688,
+      "mean": 0.7684865093700439,
+      "maximum": 0.9114114320663828,
+      "below_0_2": 52,
+      "triangles": 194304
+    },
+    "isolator": {
+      "metric": "2*inradius/circumradius",
+      "minimum": 0.1210400541509979,
+      "p05": 0.6625213458836177,
+      "median": 0.8007317587548097,
+      "mean": 0.7810124216867923,
+      "maximum": 0.9069929165156932,
+      "below_0_2": 72,
+      "triangles": 136576
+    },
+    "air_combustor": {
+      "metric": "2*inradius/circumradius",
+      "minimum": 0.07811433413583657,
+      "p05": 0.6033681137061748,
+      "median": 0.803728452028529,
+      "mean": 0.767144046722769,
+      "maximum": 0.9952587771458224,
+      "below_0_2": 126,
+      "triangles": 221760
+    },
+    "common_nozzle": {
+      "metric": "2*inradius/circumradius",
+      "minimum": 0.07811433413583657,
+      "p05": 0.6018112481728555,
+      "median": 0.7777981961895062,
+      "mean": 0.7633244160358025,
+      "maximum": 0.9952587771458224,
+      "below_0_2": 106,
+      "triangles": 247104
+    }
+  },
+  "mesh_comparison": {
+    "before_run": "6f695b5862d14c9487372a09ae842be9",
+    "after_run": "7c13cc1b1eb44a25918583a059c0d3dd",
+    "status": "changed",
+    "before_sha256": "bf725a4bdd040e4741dac0720d7fa6df45217c177a63768603d9c2e307808e09",
+    "after_sha256": "22013882f1a63a6d524c861d5267f0d1a5c12fd85b86c290410fdef5d40fa948",
+    "changed_component_count": 18,
+    "components": [
+      {
+        "id": "air_combustor",
+        "name": "Lobed air combustor envelope",
+        "group": "shell",
+        "status": "changed",
+        "before_triangles": 12800,
+        "after_triangles": 221760
+      },
+      {
+        "id": "air_inlet",
+        "name": "Air inlet / core bay",
+        "group": "shell",
+        "status": "changed",
+        "before_triangles": 6528,
+        "after_triangles": 168960
+      },
+      {
+        "id": "common_nozzle",
+        "name": "Morphing common expansion nozzle",
+        "group": "shell",
+        "status": "changed",
+        "before_triangles": 12800,
+        "after_triangles": 247104
+      },
+      {
+        "id": "core_chamber",
+        "name": "Core / Chamber envelope",
+        "group": "core",
+        "status": "changed",
+        "before_triangles": 141564,
+        "after_triangles": 249180
+      },
+      {
+        "id": "core_convergent",
+        "name": "Core / Convergent / throat",
+        "group": "core",
+        "status": "changed",
+        "before_triangles": 23546,
+        "after_triangles": 42227
+      },
+      {
+        "id": "core_fuel_feed",
+        "name": "Core / Fuel feed tube",
+        "group": "core",
+        "status": "changed",
+        "before_triangles": 65212,
+        "after_triangles": 113956
+      },
+      {
+        "id": "core_fuel_inlet",
+        "name": "Core / Fuel Inlet interface",
+        "group": "core",
+        "status": "changed",
+        "before_triangles": 1728,
+        "after_triangles": 3048
+      },
+      {
+        "id": "core_fuel_outlet",
+        "name": "Core / Fuel Outlet interface",
+        "group": "core",
+        "status": "changed",
+        "before_triangles": 1452,
+        "after_triangles": 2768
+      },
+      {
+        "id": "core_fuel_return",
+        "name": "Core / Fuel return to injector",
+        "group": "core",
+        "status": "changed",
+        "before_triangles": 12352,
+        "after_triangles": 21476
+      },
+      {
+        "id": "core_fuel_tank",
+        "name": "Core / Fuel tank",
+        "group": "core",
+        "status": "changed",
+        "before_triangles": 161872,
+        "after_triangles": 289888
+      },
+      {
+        "id": "core_injector_head",
+        "name": "Core / Injector face and outlets",
+        "group": "core",
+        "status": "changed",
+        "before_triangles": 15636,
+        "after_triangles": 26872
+      },
+      {
+        "id": "core_jacket",
+        "name": "Core / Experimental outer jacket",
+        "group": "core",
+        "status": "changed",
+        "before_triangles": 154716,
+        "after_triangles": 271072
+      },
+      {
+        "id": "core_mounts",
+        "name": "Core-to-duct mounting struts",
+        "group": "mounts",
+        "status": "unchanged",
+        "before_triangles": 192,
+        "after_triangles": 192
+      },
+      {
+        "id": "core_nozzle",
+        "name": "Core / Expansion nozzle",
+        "group": "core",
+        "status": "changed",
+        "before_triangles": 76860,
+        "after_triangles": 134700
+      },
+      {
+        "id": "core_oxidizer_feed",
+        "name": "Core / Oxidizer feed tube",
+        "group": "core",
+        "status": "changed",
+        "before_triangles": 28848,
+        "after_triangles": 52732
+      },
+      {
+        "id": "core_oxidizer_tank",
+        "name": "Core / Oxidizer tank",
+        "group": "core",
+        "status": "changed",
+        "before_triangles": 268496,
+        "after_triangles": 480076
+      },
+      {
+        "id": "core_thermal_lattice",
+        "name": "Core / Integrated thermal lattice",
+        "group": "core",
+        "status": "changed",
+        "before_triangles": 76576,
+        "after_triangles": 135056
+      },
+      {
+        "id": "frame",
+        "name": "Optimized load-path frame",
+        "group": "frame",
+        "status": "unchanged",
+        "before_triangles": 25344,
+        "after_triangles": 25344
+      },
+      {
+        "id": "isolator",
+        "name": "Twisted isolator envelope",
+        "group": "shell",
+        "status": "changed",
+        "before_triangles": 12800,
+        "after_triangles": 136576
+      },
+      {
+        "id": "mixer",
+        "name": "Lobed rocket / air mixer",
+        "group": "shell",
+        "status": "changed",
+        "before_triangles": 12800,
+        "after_triangles": 194304
+      },
+      {
+        "id": "mixer_strakes",
+        "name": "Helical mixer strakes",
+        "group": "mixing",
+        "status": "unchanged",
+        "before_triangles": 2560,
+        "after_triangles": 2560
+      },
+      {
+        "id": "thermal_reinforcement",
+        "name": "Counter-wound thermal reinforcement",
+        "group": "thermal",
+        "status": "unchanged",
+        "before_triangles": 11520,
+        "after_triangles": 11520
+      }
+    ],
+    "changed_inputs": [
+      {
+        "name": "mesh_chord_tolerance_mm",
+        "before": null,
+        "after": 0.5,
+        "geometry_dependency": "geometry_or_engine_state"
+      },
+      {
+        "name": "mesh_surface_edge_mm",
+        "before": null,
+        "after": 12,
+        "geometry_dependency": "geometry_or_engine_state"
+      },
+      {
+        "name": "mesh_voxel_mm",
+        "before": null,
+        "after": 0.75,
+        "geometry_dependency": "geometry_or_engine_state"
+      }
+    ],
+    "dimension_change": {
+      "length_mm": {
+        "before_mm": 3682.2653025160084,
+        "after_mm": 3682.2653025160084,
+        "change_percent": 0.0
+      },
+      "diameter_mm": {
+        "before_mm": 1238.9256862803568,
+        "after_mm": 1238.9256862803568,
+        "change_percent": 0.0
+      }
+    },
+    "scope": "Exact exported component triangle bytes. A changed body fingerprint proves a mesh difference, not a physically meaningful performance change."
+  },
+  "native_voxel_mm": 0.75,
+  "native_audit": {
+    "library": "Trimesh",
+    "watertight": true,
+    "winding_consistent": true,
+    "connected_components": 1,
+    "outer_shells": 1,
+    "internal_void_shells": 0,
+    "shell_signed_volumes_mm3": [
+      1277329.951605235
+    ],
+    "signed_volume_mm3": 1277329.951605235
+  },
+  "assembly_triangles": 2831371
+}

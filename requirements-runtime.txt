@@ -1,0 +1,7 @@
+# Packages imported by the active numerical and mesh pipeline.
+# CAD distributions must be installed in separate targets (see setup.ps1).
+numpy==2.4.4
+scipy==1.15.3
+rocketcea==1.2.3
+proptools-rocket==0.0.2
+trimesh==5.1.1

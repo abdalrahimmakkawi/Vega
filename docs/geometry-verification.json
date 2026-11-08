@@ -1,0 +1,279 @@
+{
+  "software_tests": {
+    "app_python": 41,
+    "standalone_geometry": 10,
+    "mesh_worker": 4
+  },
+  "native_comparison": [
+    {
+      "run": "9cd17daf16e845acb9b73e24327022b6",
+      "layout": "paired",
+      "recipe_sha256": "53b65172598915af164c76ce1689adb231b45ec383341d49523135e43d726da1",
+      "stl_sha256": "c60fe46b32107aa7340c97ba3bf190ffb074904bf383a149f23aec4a56142b2b",
+      "triangles": 850688,
+      "mesh_audit": {
+        "library": "Trimesh",
+        "watertight": true,
+        "winding_consistent": true,
+        "connected_components": 1,
+        "outer_shells": 1,
+        "internal_void_shells": 0,
+        "shell_signed_volumes_mm3": [
+          1285183.1967705411
+        ],
+        "signed_volume_mm3": 1285183.1967705411
+      },
+      "route_checks": {
+        "fuel_tank_feed_origin_inside": true,
+        "oxidizer_tank_feed_origin_inside": true,
+        "oxidizer_feed_to_injector": true,
+        "fuel_feed_to_cooling_inlet": true,
+        "cooling_outlet_to_fuel_return": true,
+        "fuel_return_to_injector": true,
+        "no_feed_return_short_circuit": true,
+        "all_channels_touch_both_collectors": true,
+        "fuel_oxidizer_feed_separation": true
+      },
+      "sampled_routes": {
+        "feed_centerline_samples": 1159,
+        "cooling_centerline_samples": 5400,
+        "radial_ligament_samples": 480,
+        "radial_ligament_failures": 0,
+        "sampled_ligaments_clear": true,
+        "sampled_paths_clear": true,
+        "scope": "Centerline obstruction and sparse radial ligament sampling only; neither proves leak-tightness or global minimum wall thickness."
+      },
+      "feed_lengths_m": {
+        "fuel": 0.39661275834305354,
+        "oxidizer": 0.1627281874401041
+      }
+    },
+    {
+      "run": "b8ba81931b794bc383cbca6013f9fec3",
+      "layout": "staggered",
+      "recipe_sha256": "b6ae1e3bd79efe8f1b81a5e9166c064945528d1798d2d30501a89904f9c511bc",
+      "stl_sha256": "3f20833fea2919bc76548458b5efc05d2120a7b8fbbcf988202298f6c79eefd1",
+      "triangles": 862088,
+      "mesh_audit": {
+        "library": "Trimesh",
+        "watertight": true,
+        "winding_consistent": true,
+        "connected_components": 1,
+        "outer_shells": 1,
+        "internal_void_shells": 0,
+        "shell_signed_volumes_mm3": [
+          1293536.9601073004
+        ],
+        "signed_volume_mm3": 1293536.9601073004
+      },
+      "route_checks": {
+        "fuel_tank_feed_origin_inside": true,
+        "oxidizer_tank_feed_origin_inside": true,
+        "oxidizer_feed_to_injector": true,
+        "fuel_feed_to_cooling_inlet": true,
+        "cooling_outlet_to_fuel_return": true,
+        "fuel_return_to_injector": true,
+        "no_feed_return_short_circuit": true,
+        "all_channels_touch_both_collectors": true,
+        "fuel_oxidizer_feed_separation": true
+      },
+      "sampled_routes": {
+        "feed_centerline_samples": 1344,
+        "cooling_centerline_samples": 5400,
+        "radial_ligament_samples": 480,
+        "radial_ligament_failures": 0,
+        "sampled_ligaments_clear": true,
+        "sampled_paths_clear": true,
+        "scope": "Centerline obstruction and sparse radial ligament sampling only; neither proves leak-tightness or global minimum wall thickness."
+      },
+      "feed_lengths_m": {
+        "fuel": 0.4890127583430535,
+        "oxidizer": 0.1627281874401041
+      }
+    }
+  ],
+  "inlet": {
+    "section": "elliptical",
+    "mesh_sha256": "96b8da344099ee7a7d3a51280f4b313dc10878706e1bd16fdb2975813559c36e",
+    "triangles": 6528,
+    "watertight": true,
+    "winding_consistent": true,
+    "volume_mm3": 133232366.5230224,
+    "relative_mass_residual": 3.0150441036288786e-16
+  },
+  "physical_validation": "not established; no measured calibration data",
+  "rbcc_reference_pack": {
+    "file": "vega/rbcc_reference.json",
+    "sources": [
+      "https://ntrs.nasa.gov/citations/20020016608",
+      "https://ntrs.nasa.gov/citations/20020073110",
+      "https://ntrs.nasa.gov/search.jsp?R=20010036882",
+      "https://ntrs.nasa.gov/citations/19990064401"
+    ],
+    "cycle_cases": [
+      0,
+      1,
+      2.5,
+      4,
+      8
+    ],
+    "runtime_wiring": "free-stream screening and connected assembly architecture gate",
+    "physical_validation": "not established; reference points are not measured Vega calibration data"
+  },
+  "ui_parameter_test": {
+    "capture_area_m2": [
+      1,
+      2
+    ],
+    "inlet_mesh_revisions": [
+      "96b8da344099",
+      "5b694f4c51e0"
+    ],
+    "capture_mass_flow_kg_s_rounded": [
+      47.13,
+      94.27
+    ],
+    "preview_label": "Unsaved inputs; saved core mesh preserved",
+    "final_restored_run": "b8ba81931b794bc383cbca6013f9fec3"
+  },
+  "connected_assembly": {
+    "run": "ec49b1dd7e8841f2913a572e5ef3c63a",
+    "triangles": 1140382,
+    "component_count": 20,
+    "recipe_sha256": "4e8ecc82585515fa2f77d17e3afd8788a80c5a498bc99135e7cd15f3e0acb116",
+    "stl_sha256": "054555b37a90869da676d3b9b2ab0b77b48397426b5826603f82b616a1c23d7f",
+    "placement_check": {
+      "native_core_vertices_inside_bay": true,
+      "tolerance_mm": 2,
+      "vertices_checked": 3090714
+    },
+    "checks": {
+      "shared_sections_coincident": true,
+      "rocket_exit_at_mixer_inlet": true,
+      "core_inside_axial_bay": true,
+      "frame_graph_connected": true,
+      "frame_centerline_samples_outside_flow": true,
+      "all_supplies_reach_exhaust": true,
+      "closed_component_surfaces": true
+    },
+    "frame_cycle_rank": 81,
+    "mount_routes": 4,
+    "multi_body_not_fused": true
+  },
+  "limitations": [
+    "Mixing and combustion closure",
+    "Combined net thrust",
+    "Unstart and mode transition",
+    "Structural loads and topology optimization",
+    "Frame/skin interference and joint manufacture"
+  ],
+  "browser_verification": {
+    "assembled_triangles": 1140382,
+    "core_triangles": 1030238,
+    "component_isolation": "Fuel tank selected and isolated in core detail",
+    "group_visibility": "Duct walls hidden and restored",
+    "orbit": "Pointer drag verified with WebGL renderer",
+    "console_errors": 0,
+    "scope": "Interactive software checks, not GPU frame-rate or physical validation"
+  },
+  "latest_connected_assembly": {
+    "run": "62370a74c45646e195a67b2658dd70b4",
+    "triangles": 1202078,
+    "component_count": 22,
+    "recipe_sha256": "3dfd0eaaea3257184765ab2454eace0b36465e1c46668e6bcc10c6558fef8c06",
+    "stl_sha256": "1a8551e85c1d95c8b1160e228693a06162b90d0c8d03aadce7bcf54c11dbbd4e",
+    "area_schedule": {
+      "mixer_inlet_area_m2": 0.12926102065336734,
+      "mixer_throat_area_m2": 0.07961983970644786,
+      "mixer_exit_area_m2": 0.11551970511039536,
+      "isolator_exit_area_m2": 0.10808383404038165,
+      "combustor_exit_area_m2": 0.12660164878528138,
+      "common_nozzle_throat_area_m2": 0.0878974940442898,
+      "common_nozzle_exit_area_m2": 0.2585220413067347,
+      "peak_lobe_amplitude": 0.1443010231646068,
+      "total_twist_rad": 2.1124323032105843,
+      "minimum_ideal_choked_area_m2": 0.07961983970644786,
+      "status": "conditional_ideal_mixing_no_closed_hot_flow"
+    },
+    "placement_check": {
+      "native_core_vertices_inside_bay": true,
+      "tolerance_mm": 2,
+      "vertices_checked": 3090714
+    },
+    "checks": {
+      "shared_sections_coincident": true,
+      "rocket_exit_at_mixer_inlet": true,
+      "core_inside_axial_bay": true,
+      "frame_graph_connected": true,
+      "frame_centerline_samples_outside_flow": true,
+      "shared_cem_state_passed": true,
+      "field_geometry_generated": true,
+      "all_supplies_reach_exhaust": true,
+      "closed_component_surfaces": true
+    },
+    "stage_interfaces_coincident": true,
+    "multi_body_not_fused": true,
+    "dimensions": {
+      "length_mm": 3253.7669559586548,
+      "diameter_mm": 1499.839409899275
+    }
+  },
+  "latest_rbcc_runtime": {
+    "run": "62370a74c45646e195a67b2658dd70b4",
+    "service_version": "0.17.0",
+    "picogk": "computed",
+    "connected_assembly": "computed",
+    "assembly_triangles": 1202078,
+    "named_components": 22,
+    "assembly_stl_sha256": "1a8551e85c1d95c8b1160e228693a06162b90d0c8d03aadce7bcf54c11dbbd4e",
+    "ideal_mixer_mass_energy": "conditional_closed",
+    "ideal_mixer_energy_residual_w": 0.0,
+    "minimum_ideal_choked_area_m2": 0.07582841876804558,
+    "architecture_gate": "passed",
+    "architecture_checks_passed": 7,
+    "field_geometry_checks_passed": 9,
+    "field_components": [
+      "thermal_reinforcement",
+      "mixer_strakes"
+    ],
+    "geometry_changed_from_0_13": true,
+    "geometry_changed_from_0_14": true,
+    "cycle_case_ids": [
+      "M0-static",
+      "M1-AAR",
+      "M2.5-AAR",
+      "M4-dual-mode",
+      "M8-scramjet"
+    ],
+    "cycle_case_scope": "Free-stream screening at the brief altitude; no thrust closure or measured calibration.",
+    "system_contract": {
+      "status": "connected_unvalidated",
+      "connection_checks_passed": 11,
+      "connection_checks_total": 11,
+      "registered_fluid_routes": 3,
+      "traced_exported_bodies": 22
+    }
+  },
+  "studio_geometry_diagnosis": {
+    "before_run": "644d4805df3c4b238109a6a6f2d19d10",
+    "after_run": "62370a74c45646e195a67b2658dd70b4",
+    "changed_input": "inlet_aspect_ratio: 3 to 5",
+    "changed_bodies": 9,
+    "total_bodies": 22,
+    "dimension_change": {
+      "length_mm": {
+        "before_mm": 3682.2653025159907,
+        "after_mm": 3253.7669559586548,
+        "change_percent": -11.636813519779654
+      },
+      "diameter_mm": {
+        "before_mm": 1238.9256862803506,
+        "after_mm": 1499.839409899275,
+        "change_percent": 21.05967504816779
+      }
+    },
+    "mesh_hash_changed": true,
+    "viewer": "solid cutaway default, visible-body fit, exact STL component comparison",
+    "browser_smoke": "passed"
+  }
+}

@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Vega · Computational Engineering</title>
+  <link rel="stylesheet" href="/rocket.css">
+  <script defer src="/renderer.js"></script>
+  <script defer src="/rocket.js"></script>
+</head>
+<body class="cem-app">
+  <header class="app-header">
+    <a href="/" class="brand">VEGA<span>COMPUTATIONAL ENGINEERING</span></a>
+    <div class="header-center"><span class="signal-dot"></span> ENGINEERING WORKBENCH</div>
+    <div class="header-actions"><span class="badge">ENGINEERING PREVIEW</span><button id="presentation-mode" type="button" aria-pressed="false">Presentation view</button><button id="toggle-inputs" type="button" aria-expanded="false" aria-controls="design-inputs">Show inputs</button></div>
+  </header>
+  <main class="app-shell">
+    <aside class="design-rail" id="design-inputs" hidden>
+      <button id="close-inputs" type="button">Close inputs ×</button>
+      <div class="eyebrow">01 / DEFINE THE PROBLEM</div>
+      <h1>Mission and<br>design inputs</h1>
+      <p>Choose the operating point and architecture. Vega calculates a linked model and records how each requirement reaches the geometry.</p>
+      <form id="requirements">
+        <div id="fields"></div>
+        <label>Geometry evaluations <input name="search_evaluations" type="number" min="8" max="512" step="1" value="64" required></label>
+        <label>Distinct meshes to build <input name="search_mesh_limit" type="number" min="2" max="64" step="1" value="12" required></label>
+        <label><input id="search-designs" type="checkbox" checked> Explore new engine designs from requirements</label>
+          <p>Vega varies the rocket contour, inlet, mixer, combustor, nozzle, frame and cooling channels. Generate a new study to compare candidates; saved runs keep their original designs.</p>
+          <button id="preview-geometry" type="button" disabled>Solve geometry preview</button>
+          <p>Preview recalculates geometry from these inputs. Generate builds and checks the full native hardware.</p>
+          <button id="generate" type="submit" disabled>Generate engine candidates <span>↗</span></button>
+      </form>
+      <p id="status" role="status">Connecting to Vega…</p>
+      <label class="history">Saved model runs<select id="history"><option value="">Select a saved run</option></select></label>
+      <div class="rail-foot"><span>MODEL SCOPE</span><strong>Reduced-order preliminary engineering</strong><small>Verification status and physical validation are reported separately.</small></div>
+    </aside>
+    <section class="workspace">
+      <div class="title">
+        <div><div class="eyebrow">VEGA / CONNECTED MODEL</div><h2>Computational engineering workbench</h2></div>
+        <span class="model-badge">REQUIREMENTS → PHYSICS → GEOMETRY</span>
+      </div>
+      <div id="active-run" class="active-run"><strong>NO ACTIVE RUN</strong><span>Run a design to populate the model and geometry.</span></div>
+      <div id="workspace-summary"><div id="run-picker"></div></div>
+      <section id="cem-results" class="cem-results" hidden aria-label="Coupled CEM results"></section>
+      <nav class="workspace-nav" aria-label="Workbench views">
+        <button type="button" data-view="geometry" aria-pressed="true">Geometry</button>
+        <button type="button" data-view="candidates" aria-pressed="false">Candidates</button>
+        <button type="button" data-view="engineering" aria-pressed="false">Engineering</button>
+        <button type="button" data-view="trace" aria-pressed="false">Model trace</button>
+      </nav>
+      <p class="model-scope">Calculated design estimates · physical validation pending</p>
+      <section id="computational-model-panel" class="mission-panel cem-panel">
+        <div class="cem-heading"><div><div class="eyebrow">02 / EQUATION-TO-GEOMETRY TRACE</div><h3>Computational model</h3></div><span class="cem-live">AWAITING RUN</span></div>
+        <p id="cem-intro">Each stage will show its inputs, outputs, governing relations, assumptions, dependencies, and checks for the active design run.</p>
+        <div class="cem-chain" id="cem-chain"><div class="cem-placeholder">Run a design or select a saved run to load its connected engineering stages.</div></div>
+      </section>
+      <section class="geometry-workspace">
+        <div class="section-title"><div><div class="eyebrow">03 / GENERATED DESIGN</div><h2>Geometry and assembly</h2></div><label class="cutaway-control"><input id="cutaway" type="checkbox"> Cutaway</label></div>
+        <div class="geometry-toolbar">
+          <label>Model<select id="geometry-view"><option value="assembly">Engine assembly</option><option value="core">Rocket core · fit hardware</option><option value="hybrid" disabled>Analysis cells · nozzle passage</option><option value="airpath" disabled>Analysis cells · connected duct passages</option></select></label>
+          <label>Display<select id="render-style"><option value="solid">Solid assembly</option><option value="mesh">Mesh inspection · triangles</option><option value="quality">Triangle quality · 2r/R</option><option value="interior">Interior hardware</option><option value="study">Diagnostic points · X-ray</option></select></label>
+          <label>View<select id="camera-view"><option value="iso">Isometric</option><option value="side">Side elevation</option><option value="top">Top plan</option><option value="end">End section</option><option value="custom" disabled>Custom orbit</option></select></label>
+          <button id="expand-view" type="button">Expand drawing</button>
+          <label class="check-control"><input id="lock-scale" type="checkbox"> Lock physical scale</label>
+          <label class="check-control"><input id="show-shell" type="checkbox" checked> <span id="show-shell-label">Duct walls</span></label>
+          <label class="check-control"><input id="show-frame" type="checkbox" checked> <span id="show-frame-label">Frame</span></label>
+          <label class="check-control"><input id="isolate-part" type="checkbox"> Isolate component</label>
+        </div>
+        <div class="viewport"><canvas id="model" aria-label="Generated Vega model. Drag to rotate and scroll to zoom."></canvas><div id="empty">The generated assembly will appear here.</div><svg id="axis-triad" width="100" height="100" aria-label="Model coordinate axes"></svg><div id="drawing-scale"></div><div class="hint">DRAG TO ORBIT · SCROLL TO ZOOM</div></div>
+        <div id="view-caption">The viewer displays geometry from the active saved run.</div>
+        <div id="mesh-source">No generated mesh</div>
+        <div class="actions"><button id="reset">Reset view</button><button id="restore-saved" hidden>Restore saved mesh</button><a id="stl" hidden>Download core STL</a><a id="assembly-download" hidden>Download assembly STL · multi-body</a><a id="bundle" hidden>Engineering run bundle</a></div>
+        <div id="metrics" class="metrics"></div>
+          <div id="design-candidates" aria-live="polite"></div>
+      </section>
+      <div class="engineering-layout">
+        <section class="component-section"><div class="eyebrow">04 / COMPONENT INSPECTOR</div><h3>Assembly anatomy</h3><div id="components"></div><p id="detail">Select a component after generation to inspect its role and geometry.</p></section>
+        <section class="evidence-section"><div class="eyebrow">05 / ENGINEERING EVIDENCE</div><h3>Execution and checks</h3><div id="pipeline"></div><p id="warnings"></p></section>
+      </div>
+      <section class="engineering"><div class="eyebrow">06 / DESIGN SPACE</div><h3>Analysis and ranked alternatives</h3><div id="system-analysis"></div><h4>Cooling passage alternatives</h4><div id="alternatives"></div></section>
+      <section class="limits"><div class="eyebrow">07 / MODEL LIMITS</div><h3>Validation and open engineering work</h3><ul id="unresolved"><li>Hardware needs matched test measurements for physical validation.</li></ul><div id="assumptions"></div><p>Reference relations: <a href="https://www.grc.nasa.gov/WWW/K-12/BGP/rktthsum.html" target="_blank" rel="noreferrer">NASA rocket thrust and nozzle equations</a> · <a href="https://ntrs.nasa.gov/api/citations/20140002709/downloads/20140002709.pdf" target="_blank" rel="noreferrer">NASA propellant data</a> · <a href="https://openrocket.info/documentation.html" target="_blank" rel="noreferrer">OpenRocket technical documentation</a>. Preliminary calculations do not qualify hardware.</p></section>
+    </section>
+  </main>
+</body>
+</html>

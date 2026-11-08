@@ -1,0 +1,8 @@
+<Project>
+  <PropertyGroup>
+    <!-- Local workbench binaries do not publish SourceLink metadata. -->
+    <EnableSourceControlManagerQueries>false</EnableSourceControlManagerQueries>
+    <EnableSourceLink>false</EnableSourceLink>
+    <DeterministicSourcePaths>false</DeterministicSourcePaths>
+  </PropertyGroup>
+</Project>
