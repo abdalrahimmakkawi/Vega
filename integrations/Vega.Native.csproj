@@ -7,8 +7,11 @@
   <ItemGroup>
     <ProjectReference Include="../vendor/PicoGK/PicoGK.csproj" />
     <Compile Include="Program.cs" />
-    <Compile Include="Jacket.cs" />
-    <Compile Include="Passages.cs" />
+    <Compile Include="Demonstrator.cs" />
+    <Compile Include="Architecture.cs" />
+    <Compile Include="Integration.cs" />
+    <Compile Include="RoutingGrid.cs" />
+    <Compile Include="Cooling.cs" />
     <Compile Include="../vendor/ShapeKernel/ShapeKernel/**/*.cs" />
     <Compile Include="../vendor/modules/LatticeLibrary/LatticeLibrary/**/*.cs" />
     <Compile Include="../vendor/modules/LatticeLibrary/ImplicitLibrary/**/*.cs" />

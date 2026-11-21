@@ -7,11 +7,11 @@
       const gl = this.gl = canvas.getContext('webgl', {alpha:false, antialias:true, preserveDrawingBuffer:false});
       if (!gl) throw Error('WebGL is unavailable in this browser. Engineering section remains available.');
       const vertex = `attribute vec3 position; attribute vec3 normal; attribute vec2 meshInfo;
-        uniform mat3 rotation; uniform vec3 focus; uniform vec2 viewport; uniform float scale; uniform bool pointMode;
+        uniform mat3 rotation; uniform vec3 focus; uniform vec3 componentOffset; uniform vec2 viewport; uniform float scale; uniform bool pointMode;
         varying vec3 shadeNormal; varying vec3 localPosition; varying vec3 barycentric; varying float triangleQuality;
-        void main(){ vec3 p=rotation*(position-focus); shadeNormal=rotation*normal;localPosition=position;
+        void main(){ vec3 p=rotation*(position+componentOffset-focus); shadeNormal=rotation*normal;localPosition=position+componentOffset;
           triangleQuality=meshInfo.x;barycentric=vec3(meshInfo.y<0.5?1.0:0.0,(meshInfo.y>0.5&&meshInfo.y<1.5)?1.0:0.0,meshInfo.y>1.5?1.0:0.0);
-          gl_Position=vec4(p.x*scale*2.0/viewport.x,-p.y*scale*2.0/viewport.y,-p.z*1.2,1.0);
+          gl_Position=vec4(p.x*scale*2.0/viewport.x,-p.y*scale*2.0/viewport.y,-p.z*0.5,1.0);
           gl_PointSize=pointMode?2.5:1.0; }`;
       const fragment = `precision mediump float; varying vec3 shadeNormal; varying vec3 localPosition; varying vec3 barycentric; varying float triangleQuality;
         uniform vec3 color; uniform bool cutaway; uniform bool unlit; uniform bool pointMode; uniform vec2 axialRange; uniform bool highlighted; uniform bool wireMode; uniform bool qualityMode;
@@ -32,7 +32,7 @@
       if(!gl.getProgramParameter(program,gl.LINK_STATUS))throw Error(gl.getProgramInfoLog(program));
       gl.deleteShader(vs);gl.deleteShader(fs);
       this.attributes={position:gl.getAttribLocation(program,'position'),normal:gl.getAttribLocation(program,'normal')};
-      this.uniforms=Object.fromEntries(['rotation','focus','viewport','scale','color','cutaway','unlit','pointMode','axialRange','highlighted','wireMode','qualityMode'].map(n=>[n,gl.getUniformLocation(program,n)]));
+      this.uniforms=Object.fromEntries(['rotation','focus','componentOffset','viewport','scale','color','cutaway','unlit','pointMode','axialRange','highlighted','wireMode','qualityMode'].map(n=>[n,gl.getUniformLocation(program,n)]));
       this.meshInfoAttribute=gl.getAttribLocation(program,'meshInfo');this.meshInfoBuffer=gl.createBuffer();
       this.meshBuffer=gl.createBuffer();this.studyBuffer=gl.createBuffer();this.routeBuffer=gl.createBuffer();this.meshCount=0;this.studyCount=0;this.routeCount=0;
       this.width=1;this.height=1;this.frameTimes=[];
@@ -94,10 +94,36 @@
     clear(){this.meshCount=0;this.studyCount=0;this.routeCount=0;this.highlight=null;this.highlightComponent=null;this.bodies=null;this.bodyBounds=null;this.studyBodies=null;this.hiddenGroups=new Set();this.hiddenComponents=new Set();this.isolatedComponent=null;}
     dispose(){const gl=this.gl;gl.deleteBuffer(this.meshBuffer);gl.deleteBuffer(this.studyBuffer);gl.deleteBuffer(this.routeBuffer);gl.deleteBuffer(this.meshInfoBuffer);gl.deleteProgram(this.program);gl.getExtension('WEBGL_lose_context')?.loseContext();}
     setHighlight(part,dimensions){this.highlight=part?part.axial_mm.map(z=>(z-(this.centerZ??dimensions.length_mm/2))/dimensions.length_mm):null;this.highlightComponent=part?.id||null;}
+    setRoutes(lines, dimensions, side=0) {
+      const data=[];this.routeKinds=[];
+      for(const line of lines){
+        const first=data.length/6;
+        for(let i=1;i<line.points.length;i++){
+          let a=line.points[i-1],b=line.points[i];
+          if(side && side*a[1]<0 && side*b[1]<0)continue;
+          if(side && side*a[1]*side*b[1]<0){
+            const t=-a[1]/(b[1]-a[1]),p=a.map((v,k)=>v+t*(b[k]-v));
+            if(side*a[1]<0)a=p;else b=p;
+          }
+          for(const p of [a,b])data.push((p[2]-this.centerZ)/dimensions.length_mm,p[0]/dimensions.length_mm,p[1]/dimensions.length_mm,0,0,1);
+        }
+        this.routeKinds.push({kind:line.kind,first,count:data.length/6-first});
+      }
+      this.routeCount=data.length/6;
+      this.gl.bindBuffer(this.gl.ARRAY_BUFFER,this.routeBuffer);
+      this.gl.bufferData(this.gl.ARRAY_BUFFER,new Float32Array(data),this.gl.STATIC_DRAW);
+    }
     resize(w,h) {
       this.width=w;this.height=h;const dpr=Math.min(devicePixelRatio||1,2),pw=Math.max(1,Math.round(w*dpr)),ph=Math.max(1,Math.round(h*dpr));
       if(this.canvas.width!==pw||this.canvas.height!==ph){this.canvas.width=pw;this.canvas.height=ph;}
       this.gl.viewport(0,0,pw,ph);
+    }
+    projectWorld(point,componentId){
+      const state=this.projection;if(!state)return null;
+      const length=this.dimensions.length_mm,offset=this.componentOffsets?.[componentId]||[0,0,0];
+      const p=[(point[2]-this.centerZ)/length,point[0]/length,point[1]/length].map((v,i)=>v+offset[i]-state.focus[i]);
+      return {x:this.width/2+(state.cy*p[0]-state.sy*p[1])*state.scale,
+        y:this.height/2+(-state.st*state.sy*p[0]-state.st*state.cy*p[1]+state.ct*p[2])*state.scale};
     }
     bind(buffer){const gl=this.gl;gl.bindBuffer(gl.ARRAY_BUFFER,buffer);for(const [name,offset] of [['position',0],['normal',12]]){const loc=this.attributes[name];gl.enableVertexAttribArray(loc);gl.vertexAttribPointer(loc,3,gl.FLOAT,false,24,offset);}}
     render(yaw,tilt,zoom,{cutaway=false,routes=true,mode='solid'}={}) {
@@ -116,7 +142,8 @@
         for(const body of this.bodies||[]){
           if(this.hiddenGroups?.has(body.group)||this.hiddenComponents?.has(body.component_id)||(mode==='interior'&&['shell','frame'].includes(body.group))||
              (this.isolatedComponent&&body.component_id!==this.isolatedComponent))continue;
-          const b=this.bodyBounds[body.component_id];if(!b)continue;visible++;
+          const raw=this.bodyBounds[body.component_id];if(!raw)continue;visible++;
+          const offset=this.componentOffsets?.[body.component_id]||[0,0,0],b=raw.map((value,i)=>value+offset[i%3]);
           for(let axis=0;axis<3;axis++){box[axis]=Math.min(box[axis],b[axis]);box[axis+3]=Math.max(box[axis+3],b[axis+3]);}
         }
         if(visible){
@@ -130,6 +157,7 @@
         }
       }
       if(this.scaleLockPxPerMm>0)scale=this.scaleLockPxPerMm*d.length_mm*zoom;
+      this.projection={cy,sy,ct,st,focus,scale};
       gl.uniform3f(u.focus,...focus);gl.uniform1f(u.scale,scale);gl.uniform3f(u.color,.48,.65,.40);gl.uniform1i(u.cutaway,cutaway && sectionable);gl.uniform1i(u.unlit,mode==='study');gl.uniform1i(u.pointMode,mode==='study');gl.uniform1i(u.wireMode,mode==='mesh');gl.uniform1i(u.qualityMode,mode==='quality');
       gl.uniform1i(u.highlighted,!!this.highlight);gl.uniform2f(u.axialRange,...(this.highlight||[0,0]));
       if(mode==='study')gl.disable(gl.DEPTH_TEST);else{gl.enable(gl.DEPTH_TEST);gl.depthFunc(gl.LEQUAL);}
@@ -138,16 +166,20 @@
       const palette={chamber:[.48,.65,.40],convergent:[.76,.51,.31],nozzle:[.39,.57,.56]};
       const bodies=mode==='study'?this.studyBodies:this.bodies;
       let visibleBodies=0,visibleTriangles=0;
+      gl.uniform3f(u.componentOffset,0,0,0);
       if(bodies){for(const body of bodies){
         if(this.hiddenGroups?.has(body.group)||this.hiddenComponents?.has(body.component_id)||(mode==='interior' && ['shell','frame'].includes(body.group)) || (this.isolatedComponent && body.component_id!==this.isolatedComponent))continue;
         visibleBodies++;visibleTriangles+=body.triangle_count||0;
-        gl.uniform1i(u.cutaway,sectionable && cutaway && !['core','frame','mounts'].includes(body.group));
+        gl.uniform3f(u.componentOffset,...(this.componentOffsets?.[body.component_id]||[0,0,0]));
+        gl.uniform1i(u.cutaway,sectionable && ((cutaway && !['core','frame','mounts'].includes(body.group)) || this.cutawayComponents?.has(body.component_id)));
         gl.uniform3fv(u.color,body.color||palette[body.component_id]||[.81,.53,.32]);gl.uniform1i(u.highlighted,!!this.highlight && body.component_id===this.highlightComponent);
         if(mode==='study')gl.drawArrays(gl.POINTS,body.first_point,body.point_count);
         else gl.drawArrays(gl.TRIANGLES,body.first_triangle*3,body.triangle_count*3);
       }}else gl.drawArrays(gl.TRIANGLES,0,this.meshCount);
+      gl.uniform3f(u.componentOffset,0,0,0);
       if(routes&&this.routeCount){gl.disable(gl.DEPTH_TEST);gl.uniform1i(u.cutaway,false);gl.uniform1i(u.unlit,true);gl.uniform1i(u.wireMode,false);gl.uniform1i(u.qualityMode,false);gl.disableVertexAttribArray(this.meshInfoAttribute);gl.vertexAttrib2f(this.meshInfoAttribute,1,0);this.bind(this.routeBuffer);
-        for(const line of this.routeKinds){if(line.kind==='ignition')gl.uniform3f(u.color,.70,.28,.28);else if(line.kind==='injection')gl.uniform3f(u.color,.95,.62,.16);else gl.uniform3f(u.color,.79,.51,.17);gl.drawArrays(gl.LINES,line.first,line.count);}
+        gl.uniform1i(u.highlighted,false);
+        for(const line of this.routeKinds){if(line.kind==='gas')gl.uniform3f(u.color,.85,.34,.12);else if(line.kind==='collector')gl.uniform3f(u.color,.12,.48,.85);else gl.uniform3f(u.color,.05,.62,.62);gl.drawArrays(gl.LINES,line.first,line.count);}
       }
       this.frameTimes.push(performance.now()-started);if(this.frameTimes.length>90)this.frameTimes.shift();
       const sorted=this.frameTimes.slice().sort((a,b)=>a-b);

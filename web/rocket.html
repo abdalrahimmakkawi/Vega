@@ -1,85 +1,109 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Vega · Computational Engineering</title>
-  <link rel="stylesheet" href="/rocket.css">
-  <script defer src="/renderer.js"></script>
-  <script defer src="/rocket.js"></script>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Vega · Specialized Airflow CEM</title><link rel="stylesheet" href="/rocket.css">
+  <script defer src="/renderer.js"></script><script defer src="/rocket.js"></script>
 </head>
-<body class="cem-app">
-  <header class="app-header">
-    <a href="/" class="brand">VEGA<span>COMPUTATIONAL ENGINEERING</span></a>
-    <div class="header-center"><span class="signal-dot"></span> ENGINEERING WORKBENCH</div>
-    <div class="header-actions"><span class="badge">ENGINEERING PREVIEW</span><button id="presentation-mode" type="button" aria-pressed="false">Presentation view</button><button id="toggle-inputs" type="button" aria-expanded="false" aria-controls="design-inputs">Show inputs</button></div>
-  </header>
-  <main class="app-shell">
-    <aside class="design-rail" id="design-inputs" hidden>
-      <button id="close-inputs" type="button">Close inputs ×</button>
-      <div class="eyebrow">01 / DEFINE THE PROBLEM</div>
-      <h1>Mission and<br>design inputs</h1>
-      <p>Choose the operating point and architecture. Vega calculates a linked model and records how each requirement reaches the geometry.</p>
-      <form id="requirements">
-        <div id="fields"></div>
-        <label>Geometry evaluations <input name="search_evaluations" type="number" min="8" max="512" step="1" value="64" required></label>
-        <label>Distinct meshes to build <input name="search_mesh_limit" type="number" min="2" max="64" step="1" value="12" required></label>
-        <label><input id="search-designs" type="checkbox" checked> Explore new engine designs from requirements</label>
-          <p>Vega varies the rocket contour, inlet, mixer, combustor, nozzle, frame and cooling channels. Generate a new study to compare candidates; saved runs keep their original designs.</p>
-          <button id="preview-geometry" type="button" disabled>Solve geometry preview</button>
-          <p>Preview recalculates geometry from these inputs. Generate builds and checks the full native hardware.</p>
-          <button id="generate" type="submit" disabled>Generate engine candidates <span>↗</span></button>
-      </form>
-      <p id="status" role="status">Connecting to Vega…</p>
-      <label class="history">Saved model runs<select id="history"><option value="">Select a saved run</option></select></label>
-      <div class="rail-foot"><span>MODEL SCOPE</span><strong>Reduced-order preliminary engineering</strong><small>Verification status and physical validation are reported separately.</small></div>
-    </aside>
-    <section class="workspace">
-      <div class="title">
-        <div><div class="eyebrow">VEGA / CONNECTED MODEL</div><h2>Computational engineering workbench</h2></div>
-        <span class="model-badge">REQUIREMENTS → PHYSICS → GEOMETRY</span>
-      </div>
-      <div id="active-run" class="active-run"><strong>NO ACTIVE RUN</strong><span>Run a design to populate the model and geometry.</span></div>
-      <div id="workspace-summary"><div id="run-picker"></div></div>
-      <section id="cem-results" class="cem-results" hidden aria-label="Coupled CEM results"></section>
-      <nav class="workspace-nav" aria-label="Workbench views">
-        <button type="button" data-view="geometry" aria-pressed="true">Geometry</button>
-        <button type="button" data-view="candidates" aria-pressed="false">Candidates</button>
-        <button type="button" data-view="engineering" aria-pressed="false">Engineering</button>
-        <button type="button" data-view="trace" aria-pressed="false">Model trace</button>
-      </nav>
-      <p class="model-scope">Calculated design estimates · physical validation pending</p>
-      <section id="computational-model-panel" class="mission-panel cem-panel">
-        <div class="cem-heading"><div><div class="eyebrow">02 / EQUATION-TO-GEOMETRY TRACE</div><h3>Computational model</h3></div><span class="cem-live">AWAITING RUN</span></div>
-        <p id="cem-intro">Each stage will show its inputs, outputs, governing relations, assumptions, dependencies, and checks for the active design run.</p>
-        <div class="cem-chain" id="cem-chain"><div class="cem-placeholder">Run a design or select a saved run to load its connected engineering stages.</div></div>
+<body>
+  <header><a href="/" class="brand">V<span>∧</span>GA <b>AIRFLOW CEM</b></a><span class="header-note">COMPUTATIONAL ENGINEERING / DESIGN STUDIO</span><span class="badge">BELL COOLING / 010</span></header>
+  <main>
+    <section class="intro"><div><p class="eyebrow">ONE ARCHITECTURE. EQUATIONS INTO GEOMETRY.</p><h1>From requirements to geometry.</h1><p>A specialized, non-firing airflow and cooling demonstrator.<br>Requirements → calculations → triangular meshes → voxels → checked parts.</p></div><div class="scope"><span class="dot"></span> Non-firing demonstrator<br><small>Airflow and assembly · no combustion or thrust claim</small></div></section>
+    <div class="workspace">
+      <aside>
+        <p class="eyebrow">01 / THE DESIGN</p><h2>Vega Airflow CEM</h2><p class="description">A sliding two-cone intake, separate precooler, helium circulator, hydrogen pump and air turbo-compressor representations around the airflow demonstrator. An original study geometry, independent of Reaction Engines.</p>
+        <dl class="specs"><div><dt>Casing length</dt><dd>120 mm</dd></div><div><dt>Casing diameter</dt><dd>60 mm</dd></div><div><dt>Main wall</dt><dd>2.4 mm</dd></div><div><dt>Print orientations</dt><dd>2 casing halves</dd></div><div><dt>Printer</dt><dd>FDM · 0.4 mm nozzle</dd></div><div><dt>Material</dt><dd>PLA / PETG</dd></div></dl>
+        <form id="generate-form"><label for="reference-flow">Reference airflow sizing case</label><select id="reference-flow"><option value="3.5">3.5 g/s · lower duty</option><option value="4" selected>4.0 g/s · baseline duty</option><option value="4.5">4.5 g/s · higher duty</option></select><p class="hint">Assumed low-speed case, not measured fan flow. Changes intake size and precooler geometry.</p><label for="cooling-flow">Channel-network reference flow</label><input id="cooling-flow" type="number" min="5" max="60" step="1" value="40" required><p class="hint">5–60 mL/s of room-temperature air, shared across the four branches. An analysis input, not a measured flow or operating instruction.</p><label for="centrebody-position">Centrebody travel <output id="travel-value">0.0 mm</output></label><input id="centrebody-position" type="range" min="-4" max="4" step="0.5" value="0"><p class="hint">Moves the centrebody in the viewer. Generate to save that position; Run CFD + FEA to solve the selected position.</p><label for="resolution">Full assembly voxel pitch</label><select id="resolution"><option value="0.2" selected>0.20 mm · smooth display</option><option value="0.3">0.30 mm voxels · fine grid</option><option value="0.7">0.70 mm voxels · coarser grid</option><option value="0.4">0.40 mm voxels · finer grid</option></select><p class="hint">A separate intake detail uses genuine 0.01 mm voxels. Smooth shading changes display normals only; full assembly STL remains at the selected pitch.</p><button id="generate" class="primary" type="submit">Synthesize & generate <span>↗</span></button></form>
+        <p id="module-resolution-note" class="hint" hidden></p><p id="status" role="status" aria-live="polite">Connecting to Vega…</p>
+        <div class="materials"><span>POWERED BY</span><strong>PicoGK + Vega Geometry</strong><small>LEAP 71 ShapeKernel & LatticeLibrary</small></div>
+      </aside>
+      <section class="viewer-panel" aria-label="Model inspection">
+        <div class="viewer-heading"><div><p class="eyebrow">02 / INSPECT THE ACTUAL STL</p><h2 id="view-title">Inside the flow body</h2></div><span id="mesh-info">No model loaded</span></div>
+        <div class="view-tabs" role="group" aria-label="Model view"><button data-view="half" aria-pressed="true">New design · open half</button><button id="baseline-view" data-view="baseline" aria-pressed="false" hidden>Previous design</button><button data-view="assembly" aria-pressed="false">Assembled</button><button id="cooling-view" data-view="cooling" aria-pressed="false" hidden>Bell cooling</button><button data-view="other" aria-pressed="false">Other half</button><button data-view="print" aria-pressed="false">Print orientation</button></div>
+        <div class="component-controls"><label for="component-select">Inspect component</label><select id="component-select"><option value="">Whole system</option></select><button type="button" id="detail-view">0.01 mm intake detail</button><a id="component-download" hidden>Component STL ↗</a></div><p id="design-change" class="design-change" hidden></p><div class="canvas-wrap"><canvas id="geometry" aria-label="Interactive generated engine geometry. Drag to rotate, scroll to zoom."></canvas><div id="anatomy-overlay" aria-label="Part labels"></div><div id="empty-state">Generate the first model to inspect its geometry.</div><div class="canvas-tools"><button id="reset-view">Reset view</button><label><input id="show-anatomy" type="checkbox" checked> Anatomy</label><label><input id="show-routes" type="checkbox" checked> Flow routes</label><label><input id="show-shield" type="checkbox"> Heat shield</label><label><input id="wireframe" type="checkbox"> Mesh edges</label></div><span class="orbit-note">DRAG TO ORBIT · SCROLL TO ZOOM</span></div>
+        <div class="legend"><span><i class="teal"></i>Half A</span><span><i class="amber"></i>Half B</span><span>Separate colors identify the system components. Routes show through walls.</span></div>
+        <section id="anatomy-panel" class="anatomy-panel" aria-label="Assembly anatomy" hidden>
+          <div class="anatomy-heading"><div><p class="eyebrow">PART ANATOMY / STABLE REFERENCES</p><h2>Point to a part. Tell me what to change.</h2></div><span>Air enters at the cone → exits at the nozzle</span></div>
+          <p class="anatomy-help">Select a label on the model or a part below. Use its reference, such as <strong>A03 · He circulator</strong>, in your next request. Pins indicate locations and remain visible through walls.</p>
+          <div id="anatomy-list" class="anatomy-list"></div>
+          <div id="anatomy-selection" class="anatomy-selection" aria-live="polite"><strong id="anatomy-name">Select a part</strong><p id="anatomy-description">The same part references stay available as you rotate the assembly.</p><p id="anatomy-kind" class="hint"></p><div class="anatomy-actions"><button id="anatomy-focus" type="button" disabled>Isolate part</button><button id="anatomy-copy" type="button" disabled>Copy part reference</button><span id="anatomy-copy-status" role="status"></span></div></div>
+        </section>
       </section>
-      <section class="geometry-workspace">
-        <div class="section-title"><div><div class="eyebrow">03 / GENERATED DESIGN</div><h2>Geometry and assembly</h2></div><label class="cutaway-control"><input id="cutaway" type="checkbox"> Cutaway</label></div>
-        <div class="geometry-toolbar">
-          <label>Model<select id="geometry-view"><option value="assembly">Engine assembly</option><option value="core">Rocket core · fit hardware</option><option value="hybrid" disabled>Analysis cells · nozzle passage</option><option value="airpath" disabled>Analysis cells · connected duct passages</option></select></label>
-          <label>Display<select id="render-style"><option value="solid">Solid assembly</option><option value="mesh">Mesh inspection · triangles</option><option value="quality">Triangle quality · 2r/R</option><option value="interior">Interior hardware</option><option value="study">Diagnostic points · X-ray</option></select></label>
-          <label>View<select id="camera-view"><option value="iso">Isometric</option><option value="side">Side elevation</option><option value="top">Top plan</option><option value="end">End section</option><option value="custom" disabled>Custom orbit</option></select></label>
-          <button id="expand-view" type="button">Expand drawing</button>
-          <label class="check-control"><input id="lock-scale" type="checkbox"> Lock physical scale</label>
-          <label class="check-control"><input id="show-shell" type="checkbox" checked> <span id="show-shell-label">Duct walls</span></label>
-          <label class="check-control"><input id="show-frame" type="checkbox" checked> <span id="show-frame-label">Frame</span></label>
-          <label class="check-control"><input id="isolate-part" type="checkbox"> Isolate component</label>
-        </div>
-        <div class="viewport"><canvas id="model" aria-label="Generated Vega model. Drag to rotate and scroll to zoom."></canvas><div id="empty">The generated assembly will appear here.</div><svg id="axis-triad" width="100" height="100" aria-label="Model coordinate axes"></svg><div id="drawing-scale"></div><div class="hint">DRAG TO ORBIT · SCROLL TO ZOOM</div></div>
-        <div id="view-caption">The viewer displays geometry from the active saved run.</div>
-        <div id="mesh-source">No generated mesh</div>
-        <div class="actions"><button id="reset">Reset view</button><button id="restore-saved" hidden>Restore saved mesh</button><a id="stl" hidden>Download core STL</a><a id="assembly-download" hidden>Download assembly STL · multi-body</a><a id="bundle" hidden>Engineering run bundle</a></div>
-        <div id="metrics" class="metrics"></div>
-          <div id="design-candidates" aria-live="polite"></div>
-      </section>
-      <div class="engineering-layout">
-        <section class="component-section"><div class="eyebrow">04 / COMPONENT INSPECTOR</div><h3>Assembly anatomy</h3><div id="components"></div><p id="detail">Select a component after generation to inspect its role and geometry.</p></section>
-        <section class="evidence-section"><div class="eyebrow">05 / ENGINEERING EVIDENCE</div><h3>Execution and checks</h3><div id="pipeline"></div><p id="warnings"></p></section>
-      </div>
-      <section class="engineering"><div class="eyebrow">06 / DESIGN SPACE</div><h3>Analysis and ranked alternatives</h3><div id="system-analysis"></div><h4>Cooling passage alternatives</h4><div id="alternatives"></div></section>
-      <section class="limits"><div class="eyebrow">07 / MODEL LIMITS</div><h3>Validation and open engineering work</h3><ul id="unresolved"><li>Hardware needs matched test measurements for physical validation.</li></ul><div id="assumptions"></div><p>Reference relations: <a href="https://www.grc.nasa.gov/WWW/K-12/BGP/rktthsum.html" target="_blank" rel="noreferrer">NASA rocket thrust and nozzle equations</a> · <a href="https://ntrs.nasa.gov/api/citations/20140002709/downloads/20140002709.pdf" target="_blank" rel="noreferrer">NASA propellant data</a> · <a href="https://openrocket.info/documentation.html" target="_blank" rel="noreferrer">OpenRocket technical documentation</a>. Preliminary calculations do not qualify hardware.</p></section>
+    </div>
+    <section class="systems-panel" id="design-audit-panel" hidden>
+      <p class="eyebrow">DESIGN LOGIC / INDEPENDENT REVIEW</p><h2 id="design-audit-result"></h2>
+      <p id="design-audit-summary"></p>
+      <div id="design-audit-conflicts"></div>
+      <div class="table-scroll"><table><thead><tr><th>Check</th><th>Status</th><th>Finding</th></tr></thead><tbody id="design-audit-checks"></tbody></table></div>
+      <details><summary>Which decisions actually drive the shape?</summary><div class="table-scroll"><table><thead><tr><th>System</th><th>Logic</th><th>Geometry dependency</th></tr></thead><tbody id="design-audit-logic"></tbody></table></div></details>
+      <a id="design-audit-link">Read calculation and native-mesh evidence ↗</a>
+      <p class="hint">This review checks reference arithmetic and selected service routes. It does not certify global clearance, manufacturing fit or whole-engine operation.</p>
     </section>
+    <section class="systems-panel" id="connection-panel" hidden>
+      <p class="eyebrow">ASSEMBLY / CONTACT AUDIT</p><h2>Connected parts. Visible interfaces.</h2>
+      <p id="connection-summary"></p><p id="connection-scope"></p>
+      <details><summary>Inspect each attachment</summary><div class="table-scroll"><table><thead><tr><th>Connection part</th><th>Attached component</th><th>Interface</th><th>Mesh evidence</th></tr></thead><tbody id="connection-rows"></tbody></table></div></details>
+      <p class="hint">Contact checks sample shared material. They do not establish fastener fit, sealing, full collision clearance or structural strength.</p>
+    </section>
+    <section class="systems-panel" id="whole-engine-panel" hidden>
+      <p class="eyebrow">WHOLE NON-FIRING SYSTEM / READINESS</p><h2 id="whole-engine-result"></h2>
+      <p>A complete operating demonstration requires airflow, circulation, thermal performance and mechanical fit to work together. Passing a geometry or network check does not establish that result.</p>
+      <p id="whole-engine-summary"></p>
+      <div class="table-scroll"><table><thead><tr><th>System check</th><th>Status</th><th>Evidence / missing work</th></tr></thead><tbody id="whole-engine-checks"></tbody></table></div>
+      <a id="assessment-link">Whole-system assessment ↗</a>
+      <h3>Python cooling-circuit submodel</h3><p>Core channels → supply → six bell channels with ring manifolds → open return. Laminar straight-pipe equivalents; bends, leakage and heat transfer are omitted.</p>
+      <label for="cold-screen-flow">Assumed cooling inspection airflow (mL/s)</label><input id="cold-screen-flow" type="number" min="5" max="30" value="10" step="1"><button id="run-cooling-screen" type="button">Recalculate cooling network</button>
+      <p id="cold-network-summary"></p><div class="table-scroll"><table><thead><tr><th>Bell branch</th><th>Length mm</th><th>Flow mL/s</th><th>Reynolds number</th></tr></thead><tbody id="bell-branch-rows"></tbody></table></div><a id="network-link">Saved network calculation ↗</a>
+    </section>
+    <section class="synthesis-panel" id="analysis-panel">
+      <p class="eyebrow">03 / CFD + FEA REVIEW</p><h2>Inspect flow. Inspect deflection.</h2>
+      <p>The two-cone intake is an axisymmetric two-shock concept. This low-speed case does not establish shocks. Pumps and compressor are static architecture representations.</p>
+      <button id="run-analysis" type="button">Run CFD + FEA at selected travel</button> <a id="analysis-download" hidden>Download saved analysis ↗</a>
+      <p id="analysis-status" role="status">Generate the systems assembly to view results.</p>
+      <div class="analysis-grid"><article><h3>Intake CFD · potential flow</h3><canvas id="cfd-plot" width="800" height="280" aria-label="Computed meridional pressure field"></canvas><p id="cfd-summary"></p><p class="hint">Axisymmetric finite volumes. Slip walls; incompressible, inviscid, irrotational air. Excludes shocks, turbulence, heat transfer and machinery. Field shown is a computed pressure variation, not pressure loss.</p></article>
+      <article><h3>Centrebody support · beam FEA</h3><canvas id="fea-plot" width="800" height="280" aria-label="Computed centrebody lateral displacement"></canvas><p id="fea-summary"></p><p class="hint">0.1 N transverse tip load, clamped at the guide entry; assumed isotropic E = 2 GPa. Beam idealization excludes contact, print anisotropy and local stress concentrations.</p></article></div>
+      <p id="detail-evidence" class="hint"></p>
+    </section>
+    <section class="systems-panel" aria-label="Engine system inspection">
+      <div><p class="eyebrow">03 / CONNECTED SYSTEMS</p><h2>Follow the geometry. Inspect the assumptions.</h2></div>
+      <div class="system-grid">
+        <article><span class="system-number">01 / COOLING</span><h3>Four branches. Two collectors.</h3><p id="cooling-detail">Generate to inspect passage connections and native clearance checks.</p><p class="hint">Resolution-aware bores (at least three voxels across). Split inspection model; sealing and heat transfer remain unverified.</p></article>
+        <article><span class="system-number">02 / CHAMBER + NOZZLE</span><h3>A flared inspection outlet.</h3><p id="nozzle-detail">The selected expansion ratio drives the enlarged inspection geometry.</p><p class="hint">The outlet contour is fixed for inspection. No thrust calculation drives this demonstrator.</p></article>
+        <article><span class="system-number">03 / MODEL ACCEPTANCE</span><h3>Make the missing work visible.</h3><p id="cycle-detail">Requirements, model checks and physical evidence are tracked separately.</p><p class="hint">No operating engine or flight capability is established.</p></article>
+      </div>
+      <div class="table-scroll"><table><caption>Cooling-channel resistance screen · straight-pipe equivalents with ideal collectors</caption><thead><tr><th>Branch</th><th>Length</th><th>Flow</th><th>Reynolds number</th><th>Pressure drop</th></tr></thead><tbody id="channel-rows"></tbody></table></div>
+      <details open><summary>Inspect original casing CEM acceptance gates</summary><ul id="cem-checks"></ul></details>
+      <details><summary>Trace the base sizing and geometry pipeline</summary><ol id="cem-stages"></ol><p id="mesh-pipeline"></p></details>
+      <div class="mode-grid"><div><strong>Add / union</strong><p>Combines material present in either voxel field.</p></div><div><strong>Subtract / difference</strong><p>Cuts the second voxel field out of the first.</p></div><div><strong>Intersect / intersection</strong><p>Keeps material contained in both voxel fields.</p></div></div><p id="boolean-evidence" class="hint">Boolean reference tests and output acceptance must pass before publication.</p>
+      <a id="cem-link" hidden>Download CEM report ↗</a> · <a id="input-mesh-link" hidden>Download triangular input ↗</a>
+    </section>
+    <section class="synthesis-panel">
+      <p class="eyebrow">03 / WHY THIS SHAPE</p><h2>Calculated. Compared. Traceable.</h2>
+      <p id="synthesis-summary">Generate a study to see the equations, assumptions and selected geometry.</p>
+      <div id="equation-results"></div>
+      <details><summary>Compare all nine candidates</summary><div class="table-scroll"><table><thead><tr><th>Candidate</th><th>Area mm²</th><th>Gap mm</th><th>Material proxy mm³</th><th>Result</th></tr></thead><tbody id="candidate-rows"></tbody></table></div></details>
+      <p class="hint">This is an assumed low-speed sizing case. The printed tubes are solid representations and the compressor vanes are static. These calculations do not predict the print's cooling or compression.</p>
+      <div class="mode-grid"><div><strong>Airflow geometry</strong><p>Intake → solid tube bundle → static supports → inspection outlet.</p></div><div><strong>Cooling passages</strong><p>Access port → ring collector → four branches → collector → exit port.</p></div><div><strong>Validation</strong><p>Mesh closure and sampled clearance precede printing, leakage inspection and measured flow tests.</p></div></div>
+      <details><summary>Model boundaries</summary><p>The surface-area screen is a hypothetical exchanger sizing comparison, not heat-transfer performance of the solid printed tubes. The channel network omits bends, entrance losses, manifold losses and seam leakage. Fan operating point and actual cooling duty require measurements.</p></details>
+    </section>
+    <section class="bottom-grid">
+      <div class="checks"><p class="eyebrow">03 / CHECK THE RESULT</p><h2>Geometry before promises.</h2><div id="checks"><p>Each print half must be closed, consistently wound, connected and within the build envelope before download.</p></div><p class="hint">Mesh checks are computational. Physical printing, fit and airflow remain unverified until you try this exact model.</p><a id="report-link" hidden>Read the geometry report ↗</a></div>
+      <div class="print"><p class="eyebrow">04 / MAKE THE FIRST ONE</p><h2>Base parts + integration.</h2><p id="kit-description"></p><p>Remove supports, align the rims and hold the smooth collars together with two rubber bands. Use an unsealed desk fan to explore the open air passages.</p><div id="downloads" hidden><a class="primary" id="kit-link">Download print kit <span>↓ ZIP</span></a><div class="part-links"><a id="base-kit-link" hidden>Accepted base kit · ZIP</a><a id="part-a">Half A · STL</a><a id="part-b">Half B · STL</a><a id="guide-link">Print & assembly guide</a></div></div><p class="hint">Room-temperature air only. No fuel, ignition, compressed gas or hot operation.</p></div>
+    </section>
+    <section class="synthesis-panel">
+      <h2>Room-temperature airflow test</h2>
+      <p>Compare local air speed with the print absent and with it assembled. Use an unsealed desk fan and an anemometer. Keep the fan setting and probe position fixed, and take three readings in each configuration.</p>
+      <form id="airflow-test">
+        <label for="fan-only">Fan only, three readings in m/s</label>
+        <input id="fan-only" type="text" required placeholder="1.2, 1.3, 1.2">
+        <label for="fan-with-print">Fan with assembled print, three readings in m/s</label>
+        <input id="fan-with-print" type="text" required placeholder="0.8, 0.9, 0.8">
+        <button type="submit">Compare readings</button>
+        <output id="airflow-result" for="fan-only fan-with-print" aria-live="polite"></output>
+      </form>
+      <p class="hint">The comparison measures air speed at one point. The sizing cases above use assumed mass flow across a section.</p>
+    </section>
+    <footer><span>VEGA / SABRE-inspired computational geometry study</span><span id="run-id">No generated run</span></footer>
   </main>
 </body>
 </html>

@@ -1,1 +1,1 @@
-"""Vega: rocket conceptual engineering."""
+"""Vega: bounded geometry synthesis for a SABRE-inspired print study."""
